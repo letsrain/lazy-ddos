@@ -156,8 +156,8 @@ function printStats() {
   return JSON.stringify(targets, null, 2)
 }
 
-let CONCURRENCY_LIMIT = 300
-var queue: Promise<void>[] = []
+let CONCURRENCY_LIMIT = 70;
+var queue: Promise<void>[] = [];
 
 async function fetchWithTimeout(resource: RequestInfo, options: { timeout: any; }) {
   const controller = new AbortController();
