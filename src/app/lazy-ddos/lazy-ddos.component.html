@@ -1,0 +1,47 @@
+<div id="config">
+  <mat-form-field appearance="outline" class="mr">
+    <mat-label>Current Limit: {{concurrencylimit}}</mat-label>
+    <input matInput type="number" [formControl]="concurrencyLimitFormControl">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="mr">
+    <mat-label>Targets: {{targets.length}}</mat-label>
+    <input matInput placeholder="https://putin.ru/" type="text" [formControl]="targetFormControl">
+  </mat-form-field>
+
+  <div id="buttons">
+    <button class="mr" mat-raised-button (click)="updateConcurrencyLimit()">Update Limit</button>
+    <button class="mr" mat-raised-button (click)="updateTargets()">Update targets</button>
+  </div>
+
+</div>
+<main id="container">
+  <div id="terminal">
+    <!-- Terminal Bar -->
+    <section id="terminal__bar">
+      <div id="bar__buttons">
+        <button class="bar__button" id="bar__button--exit">&#10005;</button>
+        <button class="bar__button">&#9472;</button>
+        <button class="bar__button">&#9723;</button>
+      </div>
+      <p id="bar__user">anonymous@ddos: ~</p>
+      <div id="exportTargets">
+        <button mat-icon-button (click)="exportTargets()">
+          <mat-icon aria-hidden="false" aria-label="download">cloud_download</mat-icon>
+        </button>
+      </div>
+    </section>
+    <!-- Terminal Body -->
+    <section id="terminal__body">
+      <div id="terminal__prompt">
+        <span id="terminal__prompt--user">anonymous@ddos:</span>
+        <span id="terminal__prompt--location">~</span>
+        <span id="terminal__prompt--bling">$</span>
+        <span id="terminal__prompt--cursor"></span>
+      </div>
+      <div id="info">
+        <pre [textContent]="stats()"></pre>
+      </div>
+    </section>
+  </div>
+</main>
