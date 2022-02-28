@@ -1,4 +1,7 @@
 <div id="config">
+  <div>
+    <button class="mr" mat-raised-button (click)="startFlood()">Start</button>
+  </div>
   <mat-form-field appearance="outline" class="mr">
     <mat-label>Current Limit: {{concurrencylimit}}</mat-label>
     <input matInput type="number" [formControl]="concurrencyLimitFormControl">
